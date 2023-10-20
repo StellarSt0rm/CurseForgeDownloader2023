@@ -9,7 +9,7 @@ Script May Have Errors In Getting Data, Please Check \"resourcepacks\" And Make 
 Tested With "Colony A New Odyssey - STABLE-1.0.7", Out Of 176 Mods, One Shader And Two Libraries Identified As Resourcepacks (3 False-Positives)
 <br>
 <br>
-Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience
+Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
 <br>
 <br>
 Installation!:
