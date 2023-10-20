@@ -88,7 +88,7 @@ def downloadM(pID, fID, Mversion, loader, listing):
 	if response.status_code == 200:
 		print(f"\033[1A├ {colors.blue}Getting Mod... {colors.green}[DONE]{colors.reset}")
 		print(f"└ {colors.blue}Writing Mod To TMP File...{colors.reset}")
-		with open("./mod-tmp.zip", "wb") as file:
+		with open("./mods/mod-tmp.zip", "wb") as file:
 			file.write(response.content)
 		
 		print(f"\033[1A├ {colors.blue}Writing Mod To TMP File... {colors.green}[DONE]{colors.reset}")
