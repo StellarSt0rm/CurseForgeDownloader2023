@@ -22,7 +22,7 @@ Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
 <br>
 
 ## Features
-   1. Detailed Mode (SLOW - DEFAULT)
+   1. Detailed Mode (SLOW - DEF)
       <br>Gives Detailed Output Of What The Script Is Doing
       <br>(IMAGE HERE)
       <br>
