@@ -1,4 +1,6 @@
 # <p align="center">CurseForge Downloader 2023</p>
+
+### Version: 1.2
 Download Mods From CurseForge, BETA; Will Add Threading In The Future
 <br>
 <br>
