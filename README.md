@@ -35,4 +35,4 @@ Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
 <br>
 
 ---
-Made By $\color{magenta}\text{StellarSt0rm}$ -- $\color{green}\text{Oct/20/2023}$
+Made By $\color{magenta}\text{StellarSt0rm}$ -- $\color{green}\text{2023}$
