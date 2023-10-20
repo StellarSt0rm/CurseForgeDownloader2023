@@ -83,7 +83,7 @@ def main(): # Main Script Function
 			loader = Mdata["minecraft"]["modLoaders"][0]["id"].split("-")[0] # Get Loader
 
 			print(f"{colors.blue}Script Version: {colors.yellow}1.2 - TESTED{colors.reset}")
-			print(f"{colors.blue}Found Mod Loader: {colors.yellow}{loader}{colors.reset}")
+			print(f"{colors.blue}Found Mod Loader: {colors.yellow}{loader.capitalize()}{colors.reset}")
 			print(f"{colors.blue}Found MC Version: {colors.yellow}{Mversion}{colors.reset}\n")
 
 			# Execute downloadM For Each Mod
