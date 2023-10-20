@@ -103,6 +103,6 @@ if __name__ == "__main__":
 	except KeyboardInterrupt:
 		print(f"{colors.blue}\033[2K\n\rAborting...{colors.reset}"); exit()
 	except Exception as e:
-		print(f"{colors.red}\033[2K\n\rError: {colors.yellow}{e}{colors.reset}")
+		print(f"{colors.red}\033[2K\n\rError:{colors.reset} {colors.yellow}{e}{colors.reset}")
 
 # Made By StellarSt0rm -- Oct/20/2023
