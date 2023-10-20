@@ -30,7 +30,7 @@ Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
    3. Threaded Mode (FAST - Bad For Slow Computers)
       <br>Goes BLAZINGLY FAST 🚀 ; Good For BIG Modpacks
       <br>Usage: `py ./CSDownloader.py -t <num / or "max">`
-      <br>"max" Will Set The Max To '30', But You Can Specify A Larger Number
+      <br>"max" Will Set The Max To '30', But You Can Specify A Larger Number (Not Recommended)
       <br>(IMAGE HERE)
 <br>
 
