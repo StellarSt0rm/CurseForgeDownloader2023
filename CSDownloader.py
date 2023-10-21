@@ -1,6 +1,8 @@
 import requests, zipfile, os, toml, json, threading#, shutil
 from sys import argv
 
+Sversion = "1.4"
+
 class colors(): # Class For Storing Color Codes, For AESTHETIC Purpses
 	green = "\033[32m\033[1m"
 	red = "\033[31m\033[1m"
@@ -177,7 +179,7 @@ def main(): # Main Script Function
 			Mversion = Mdata["minecraft"]["version"] # Get Version
 			loader = Mdata["minecraft"]["modLoaders"][0]["id"].split("-")[0] # Get Loader
 
-			print(f"{colors.blue}Script Version: {colors.yellow}1.3 - TESTED{colors.reset}")
+			print(f"{colors.blue}Script Version: {colors.yellow}{Sversion}{colors.reset}")
 			print(f"{colors.blue}Found Mod Loader: {colors.yellow}{loader.capitalize()}{colors.reset}")
 			print(f"{colors.blue}Found MC Version: {colors.yellow}{Mversion}{colors.reset}\n")
 
