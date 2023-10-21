@@ -12,8 +12,11 @@ def setup(): # Setup For Execution, To Make Sure The Nessesary Folders/Files Are
 	if not os.path.exists("./mods"): # Checks For A "mods" Folder, To Store Downloaded Mods
 		os.mkdir("./mods")
 
-	if not os.path.exists("./resourcepacks"): # Same as ^, But With Resourcepacks
+	if not os.path.exists("./resourcepacks"): # Same As ^, But With Resourcepacks
 		os.mkdir("./resourcepacks")
+
+	if not os.path.exists("./shaders"): # Same As ^, But With Shaders
+		os.mkdir("./shaders")
 
 	if not os.path.exists("./manifest.json"): # Checks If The Modpack's Manifest Is In The Same Folder
 		print(f"{colors.red}ERROR:{colors.reset} {colors.yellow}Manifest File Not Found, Make Sure To Put The Script In The Same Folder As The Manifest{colors.reset}"); exit()
@@ -41,9 +44,9 @@ def getData(loader, Mversion, mode: int, Rnum: int = None):
 	elif mode == 2:
 		output = f"./mods/mod-tmp-{Rnum}.zip"
 
-	try:
 		# Open TMP Mod File With zipfile
-		with zipfile.ZipFile(output, "r") as zipF:
+	with zipfile.ZipFile(output, "r") as zipF:
+		try:
 			# For Fabric
 			if loader == "fabric":
 				jsonD = json.loads(zipF.read("fabric.mod.json").decode("utf-8")) # Open Data Json
@@ -62,16 +65,48 @@ def getData(loader, Mversion, mode: int, Rnum: int = None):
 
 				Nname = f"./mods/{name}-{version}-{Mversion}.jar"
 
-		if mode == 1: print(f"\033[1A├ {colors.blue}Getting Mod Data... {colors.green}[DONE]{colors.reset}")
-	except:
-		# Handle Data Exceptions
-		if mode == 1:
-			print(f"\033[1A├ {colors.blue}Getting Mod Data... {colors.red}[ERROR]{colors.reset}")
-			print(f"│ └ {colors.blue}Reason: {colors.yellow}File Is Possibly A Resoucepack, Will Add NAME Support For Them In The Future...{colors.reset}")
-		elif mode == 2:
-			print(f"{colors.red}ERROR:{colors.reset} {colors.yellow}Error Getting Mod Data, Assuming It's A Resourcepack{colors.reset}")
-		Nname = f"./resourcepacks/ResourcePack{i+1}.zip" # Set Name, As The Error Means That It Is A Resourcepack
-		i += 1 # Add One To i, For Next Resourcepack
+			if mode == 1: print(f"\033[1A├ {colors.blue}Getting Mod Data... {colors.green}[DONE]{colors.reset}")
+		except:
+			# Handle Data Exceptions
+			try: # To Catch Some NEFTY Libraries Which Dont Have A "mods.toml"; Not Much Data Avalable On The Manifest, But Better Than Nothing
+				manifestD = {} # Set Var manifestD
+				manifest = zipF.read("META-INF/MANIFEST.MF").decode("utf-8") # Open File
+				for line in manifest.split('\n'): # Read And Split
+					print(line)
+					if ":" in line:
+						key, value = line.split(":", 1)
+						manifestD[key.strip()] = value.strip()
+
+				# Set Vars
+				name = manifestD["Automatic-Module-Name"]
+				try: version = manifestD["Implementation-Version"]
+				except: version = "UnknownVersion"
+
+				Nname = f"./mods/{name}-{version}-{Mversion}"
+				if mode == 1: print(f"\033[1A├ {colors.blue}Getting Mod Data... {colors.yellow}[DONE] (LOW DATA AVAILABLE){colors.reset}")
+				elif mode == 2: print(f"{colors.yellow}WARNING: Low Data Avalable On File, Assuming It's A Library{colors.reset}")
+			except: # Catch Shaders
+				try:
+					global i3
+					#found = False
+					for item in zipF.infolist():
+						if "shaders" in item.filename or "shader" in item.filename: # Search If It Contains
+							Nname = f"./shaders/Shader{i3}.zip"
+							i3 += 1
+							if mode == 1:
+								print(f"\033[1A├ {colors.blue}Getting Mod Data... {colors.yellow}[WARNING]{colors.reset}")
+								print(f"│ └ {colors.blue}Reason: {colors.yellow}File Had No Data, Assuming It's A Shader{colors.reset}")
+							else:
+								print(f"{colors.yellow}WARNING: File Had No Data, Assuming It's A Shader{colors.reset}")
+							break
+				except:
+					if mode == 1:
+						print(f"\033[1A├ {colors.blue}Getting Mod Data... {colors.yellow}[WARNING]{colors.reset}")
+						print(f"│ └ {colors.blue}Reason: {colors.yellow}File Had No Data, Assuming It's A Resourcepack{colors.reset}")
+					elif mode == 2:
+						print(f"{colors.red}WARNING: File Had No Data, Assuming It's A Resourcepack{colors.reset} {e}")
+					Nname = f"./resourcepacks/ResourcePack{i}.zip" # Set Name, As The Error Means That It Is A Resourcepack
+					i += 1 # Add One To i, For Next Resourcepack
 		
 	# Rename TMP File
 	os.rename(output, Nname)
@@ -79,7 +114,7 @@ def getData(loader, Mversion, mode: int, Rnum: int = None):
 
 def downloadM(pID, fID, Mversion, loader, listing):
 	# Get Mod
-	print(f"{colors.blue}Downloading: {colors.yellow}{pID}{colors.reset} - {colors.yellow}{fID}{colors.reset} ({colors.yellow}{listing[0]}{colors.reset}/{colors.yellow}{listing[1]}{colors.reset})")
+	print(f"{colors.blue}Downloading: {colors.yellow}{pID}{colors.reset} - {colors.yellow}{fID}{colors.reset} {colors.blue}({listing[0]}/{listing[1]}){colors.reset}")
 	url = f"https://www.curseforge.com/api/v1/mods/{pID}/files/{fID}/download"
 	print(f"└ {colors.blue}Getting Mod...{colors.reset}")
 	response = requests.get(url)
@@ -105,10 +140,16 @@ def downloadM(pID, fID, Mversion, loader, listing):
 def downloadM2(pID, fID, Mversion, loader, listing): # Threaded Version!
 	from random import randint
 	global i2
+	Trying2 = True
 
 	# Get Mod
 	url = f"https://www.curseforge.com/api/v1/mods/{pID}/files/{fID}/download"
-	response = requests.get(url)
+	while Trying2:
+		try:
+			response = requests.get(url)
+			Trying2 = False
+		except:
+			print(f"{colors.red}ERROR:{colors.reset} {colors.blue}Error Getting Response; Retrying...{colors.reset}")
 
 	# Write Mod
 	if response.status_code == 200:
@@ -136,7 +177,7 @@ def main(): # Main Script Function
 			Mversion = Mdata["minecraft"]["version"] # Get Version
 			loader = Mdata["minecraft"]["modLoaders"][0]["id"].split("-")[0] # Get Loader
 
-			print(f"{colors.blue}Script Version: {colors.yellow}1.2 - TESTED{colors.reset}")
+			print(f"{colors.blue}Script Version: {colors.yellow}1.3 - TESTED{colors.reset}")
 			print(f"{colors.blue}Found Mod Loader: {colors.yellow}{loader.capitalize()}{colors.reset}")
 			print(f"{colors.blue}Found MC Version: {colors.yellow}{Mversion}{colors.reset}\n")
 
@@ -149,14 +190,15 @@ def main(): # Main Script Function
 				else: # Threaded Version
 					Trying = True # Set Trying To True
 					while Trying: # Try To Execute While Trying Is True
-						if threading.active_count() < maxThreadN: # Check That Active Thread Count Is Below maxThreadN
+						if threading.active_count() < maxThreadN + 1: # Check That Active Thread Count Is Below maxThreadN
 							threading.Thread(target=lambda: downloadM2(entry["projectID"], entry["fileID"], Mversion, loader, len(Mdata["files"]))).start() # Start Thread
 							Trying = False # Set Trying To False, To Stop The While Loop
 
-maxThreadN = 0 # Def thread Num
 if __name__ == "__main__":
-	i = 0 # For Resourcepack Enumeration, Until NAME Support Is Added
+	maxThreadN = 0 # Def thread Num
+	i = 1 # For Resourcepack Enumeration, Until NAME Support Is Added
 	i2 = 1 # For Listing How Many Mods Are Left
+	i3 = 1
 	setup() # Run Setup
 	try:
 		main() # Start Script
