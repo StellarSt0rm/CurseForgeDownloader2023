@@ -33,6 +33,13 @@ Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
       <br>"max" Will Set The Max To '30', But You Can Specify A Larger Number (Not Recommended)
       <br>(IMAGE HERE)
 <br>
+<br>
+
+## TODO:
+   1. Add `-u <url>` To Download Modpacks Directly From CurseForge (Without Needing The Zip Already Downloaded)
+   2. Prepare Full "overrides" Folder With Everything To Make Final Installation Easier
+
+<br>
 
 ---
 Made By $\color{magenta}\text{StellarSt0rm}$ -- $\color{green}\text{2023}$
