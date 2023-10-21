@@ -41,7 +41,8 @@ Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
    4. Change The Way Arguments Are Handled
    5. Add `-n` Option To Disable Colors (Will Keep Bold)
    6. Get Version Right For Mods That Have "${file.jarVersion}" In The "mods.toml" ("version=")
-   7. Fix Mod Version Issues
+
+   ?. Add GUI "Mode" (Will Be Separate Script)
 
 <br>
 
