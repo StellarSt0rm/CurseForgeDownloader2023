@@ -44,9 +44,9 @@ def getType(mode: int, name: str):
 	# And Sets The Appropiate Path (shader/resourcepack)
 
 	if ".zip" in name:
-		with zipfile.ZipFile.open(name, "r") as zipF:
+		with zipfile.ZipFile(f"./{name}", "r") as zipF:
 			for entry in zipF.infolist():
-				if "shader" in entry or "shaders" in entry:
+				if "shader" in entry.filename or "shaders" in entry.filename:
 					newPath = "shaders/"
 					break
 				else:
@@ -75,7 +75,7 @@ def downloadM(pID, fID, listing):
 		print(f"\033[1A├ {colors.blue}Getting Mod... {colors.green}[DONE]{colors.reset}")
 		print(f"└ {colors.blue}Writing Mod To File{colors.reset}")
 		
-		Nname = response.url.split("/")[-1] # Get Name
+		Nname = response.url.split("/")[-1].replace("%2B", "+") # Get Name
 		with open(f"./{Nname}", "wb") as file:
 			file.write(response.content)
 		
@@ -106,7 +106,7 @@ def downloadM2(pID, fID, listing): # Threaded Version!
 
 	# Write Mod
 	if response.status_code == 200:
-		Nname = response.url.split("/")[-1] # Get Name
+		Nname = response.url.split("/")[-1].replace("%2B", "+") # Get Name
 		with open(f"./{Nname}", "wb") as file:
 			file.write(response.content)
 
