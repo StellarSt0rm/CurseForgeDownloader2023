@@ -1,7 +1,7 @@
 import requests, zipfile, os, json, threading#, shutil
 from sys import argv
 
-Sversion = "1.6"
+Sversion = "1.5"
 
 class colors(): # Class For Storing Color Codes, For AESTHETIC Purpses
 	green = "\033[32m\033[1m"
@@ -56,12 +56,11 @@ def getType(mode: int, name: str):
 	os.rename(name, f"./{newPath}{name}")
 
 def downloadM(pID, fID, listing, mode):
-	from random import randint
 	global i
 	Trying2 = True
 
 	if mode == 1:
-		print(f"{colors.blue}Downloading: {colors.yellow}{pID}{colors.reset} - {colors.yellow}{fID}{colors.reset} {colors.blue}({listing[0]}/{listing[1]}){colors.reset}")
+		print(f"{colors.blue}Downloading: {colors.yellow}{pID}{colors.reset} - {colors.yellow}{fID}{colors.reset} {colors.blue}({i}/{listing}){colors.reset}")
 		print(f"└ {colors.blue}Getting Mod...{colors.reset}")
 
 	# Get Mod
