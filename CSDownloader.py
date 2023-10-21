@@ -1,4 +1,4 @@
-import requests, zipfile, os, toml, json, threading#, shutil
+import requests, zipfile, os, json, threading#, shutil
 from sys import argv
 
 Sversion = "1.5"
