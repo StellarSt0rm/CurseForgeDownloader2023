@@ -19,7 +19,7 @@ def setup(): # Setup For Execution, To Make Sure The Nessesary Folders/Files Are
 		os.mkdir("./shaders")
 
 	if not os.path.exists("./manifest.json"): # Checks If The Modpack's Manifest Is In The Same Folder
-		print(f"{colors.red}ERROR:{colors.reset} {colors.yellow}Manifest File Not Found, Make Sure To Put The Script In The Same Folder As The Manifest{colors.reset}"); exit()
+		print(f"{colors.red}ERROR:{colors.reset} {colors.blue}Manifest File Not Found, Make Sure To Put The Script In The Same Folder As The Manifest{colors.reset}"); exit()
 
 	if len(argv) >= 2:
 		if len(argv) >= 3 and argv[1] == "-t":
@@ -28,12 +28,12 @@ def setup(): # Setup For Execution, To Make Sure The Nessesary Folders/Files Are
 			except: inputS = argv[2]
 			if type(inputS) is str:
 				if inputS == "max": maxThreadN = 30
-				else: print(f"{colors.red}ERROR:{colors.reset} {colors.yellow}You Must Give A MAX Thread Number, Or Use \"max\" To Use The Max (Hardcapped) Value{colors.reset}")
+				else: print(f"{colors.red}ERROR:{colors.reset} {colors.blue}You Must Give A MAX Thread Number, Or Use \"max\" To Use The Max (Hardcapped) Value{colors.reset}")
 			else:
-				if inputS > 30: print(f"{colors.yellow}WARNING: Using Values Higher Than 30 Is Not Recommended{colors.reset}")
+				if inputS > 30: print(f"{colors.yellow}\033[1mWARNING:{colors.reset} {colors.blue}Using Values Higher Than 30 Is Not Recommended{colors.reset}")
 				maxThreadN = inputS
 		else:
-			print(f"{colors.red}ERROR:{colors.reset} {colors.yellow}You Must Give A MAX Thread Number, Or Use \"max\" To Use The Max (Hardcapped) Value{colors.reset}")
+			print(f"{colors.red}ERROR:{colors.reset} {colors.blue}You Must Give A MAX Thread Number, Or Use \"max\" To Use The Max (Hardcapped) Value{colors.reset}")
 
 def getData(loader, Mversion, mode: int, Rnum: int = None):
 	global i # Get Global i
@@ -72,7 +72,6 @@ def getData(loader, Mversion, mode: int, Rnum: int = None):
 				manifestD = {} # Set Var manifestD
 				manifest = zipF.read("META-INF/MANIFEST.MF").decode("utf-8") # Open File
 				for line in manifest.split('\n'): # Read And Split
-					print(line)
 					if ":" in line:
 						key, value = line.split(":", 1)
 						manifestD[key.strip()] = value.strip()
@@ -84,7 +83,7 @@ def getData(loader, Mversion, mode: int, Rnum: int = None):
 
 				Nname = f"./mods/{name}-{version}-{Mversion}"
 				if mode == 1: print(f"\033[1A├ {colors.blue}Getting Mod Data... {colors.yellow}[DONE] (LOW DATA AVAILABLE){colors.reset}")
-				elif mode == 2: print(f"{colors.yellow}WARNING: Low Data Avalable On File, Assuming It's A Library{colors.reset}")
+				elif mode == 2: print(f"{colors.yellow}\033[1mWARNING:{colors.reset} {colors.blue}Low Data Avalable On File, Assuming It's A Library{colors.reset}")
 			except: # Catch Shaders
 				try:
 					global i3
@@ -94,17 +93,17 @@ def getData(loader, Mversion, mode: int, Rnum: int = None):
 							Nname = f"./shaders/Shader{i3}.zip"
 							i3 += 1
 							if mode == 1:
-								print(f"\033[1A├ {colors.blue}Getting Mod Data... {colors.yellow}[WARNING]{colors.reset}")
+								print(f"\033[1A├ {colors.blue}Getting Mod Data... {colors.yellow}\033[1m[WARNING]{colors.reset}")
 								print(f"│ └ {colors.blue}Reason: {colors.yellow}File Had No Data, Assuming It's A Shader{colors.reset}")
 							else:
-								print(f"{colors.yellow}WARNING: File Had No Data, Assuming It's A Shader{colors.reset}")
+								print(f"{colors.yellow}\033[1mWARNING:{colors.reset} {colors.blue}File Had No Data, Assuming It's A Shader{colors.reset}")
 							break
 				except:
 					if mode == 1:
-						print(f"\033[1A├ {colors.blue}Getting Mod Data... {colors.yellow}[WARNING]{colors.reset}")
+						print(f"\033[1A├ {colors.blue}Getting Mod Data... {colors.yellow}\033[1m[WARNING]{colors.reset}")
 						print(f"│ └ {colors.blue}Reason: {colors.yellow}File Had No Data, Assuming It's A Resourcepack{colors.reset}")
 					elif mode == 2:
-						print(f"{colors.red}WARNING: File Had No Data, Assuming It's A Resourcepack{colors.reset} {e}")
+						print(f"{colors.red}\033[1mWARNING:{colors.reset} {colors.blue}File Had No Data, Assuming It's A Resourcepack{colors.reset} {e}")
 					Nname = f"./resourcepacks/ResourcePack{i}.zip" # Set Name, As The Error Means That It Is A Resourcepack
 					i += 1 # Add One To i, For Next Resourcepack
 		
@@ -193,7 +192,7 @@ def main(): # Main Script Function
 						if threading.active_count() < maxThreadN + 1: # Check That Active Thread Count Is Below maxThreadN
 							threading.Thread(target=lambda: downloadM2(entry["projectID"], entry["fileID"], Mversion, loader, len(Mdata["files"]))).start() # Start Thread
 							Trying = False # Set Trying To False, To Stop The While Loop
-
+			print(f"{colors.green}\nDownload Complete!{colors.reset}")
 if __name__ == "__main__":
 	maxThreadN = 0 # Def thread Num
 	i = 1 # For Resourcepack Enumeration, Until NAME Support Is Added
@@ -205,6 +204,6 @@ if __name__ == "__main__":
 	except KeyboardInterrupt:
 		print(f"{colors.blue}\033[2K\n\rAborting...{colors.reset}"); exit()
 	except Exception as e:
-		print(f"{colors.red}\033[2K\n\rError:{colors.reset} {colors.yellow}{e}{colors.reset}")
+		print(f"{colors.red}\033[2K\n\rError:{colors.reset} {colors.blue}{e}{colors.reset}")
 
 # Made By StellarSt0rm -- 2023

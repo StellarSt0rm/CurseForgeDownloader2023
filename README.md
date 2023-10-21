@@ -1,6 +1,6 @@
 # <p align="center">CurseForge Downloader 2023</p>
 
-### Version: 1.3
+### Version: 1.4
 Download Modpacks From CurseForge, BETA
 <br>
 <br>
@@ -8,7 +8,7 @@ Script Can Stop Working In The Future Due To Loaders/Hosts Changing Stuff
 <br>
 Script May Have Errors In Getting Data, Please Check \"resourcepacks\" And Make Sure There Isn't Any False-Positives (Will Fix In The Future)
 
-Tested With "Colony A New Odyssey - STABLE-1.0.7", Out Of 176 Mods, One Shader And Two Libraries Identified As Resourcepacks (3 False-Positives/Incorrectly Handled)
+Tested With "Colony A New Odyssey - STABLE-1.0.7", Out Of 176 Mods, All Were Handled Correctly 🥳🥳🥳
 <br>
 <br>
 Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
@@ -29,6 +29,7 @@ Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
       <br>
    3. Threaded Mode (FAST - Bad For Slow Computers)
       <br>Goes BLAZINGLY FAST 🚀 ; Good For BIG Modpacks
+      <br>$\color{red}\text{⟁}$ Fast Is Relative To How Big The Modpack Is, But It's Faster Than Detailed Mode
       <br>Usage: `py ./CSDownloader.py -t <num / or "max">`
       <br>"max" Will Set The Max To '30', But You Can Specify A Larger Number (Not Recommended)
       <br>(IMAGE HERE)
