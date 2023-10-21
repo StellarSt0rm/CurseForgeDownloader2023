@@ -30,7 +30,7 @@ def setup(): # Setup For Execution, To Make Sure The Nessesary Folders/Files Are
 				if inputS == "max": maxThreadN = 30
 				else: print(f"{colors.red}ERROR:{colors.reset} {colors.yellow}You Must Give A MAX Thread Number, Or Use \"max\" To Use The Max (Hardcapped) Value{colors.reset}")
 			else:
-				if inputS > 30: print(f"{colors.yellow}WARNING: Using Higher Values Than 30 Is Not Recommended{colors.reset}")
+				if inputS > 30: print(f"{colors.yellow}WARNING: Using Values Higher Than 30 Is Not Recommended{colors.reset}")
 				maxThreadN = inputS
 		else:
 			print(f"{colors.red}ERROR:{colors.reset} {colors.yellow}You Must Give A MAX Thread Number, Or Use \"max\" To Use The Max (Hardcapped) Value{colors.reset}")
