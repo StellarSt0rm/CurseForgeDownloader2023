@@ -1,7 +1,7 @@
 import requests, zipfile, os, json, threading#, shutil
 from sys import argv
 
-Sversion = "1.5"
+Sversion = "1.6"
 
 class colors(): # Class For Storing Color Codes, For AESTHETIC Purpses
 	green = "\033[32m\033[1m"
