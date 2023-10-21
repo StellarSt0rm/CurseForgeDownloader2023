@@ -1,6 +1,6 @@
 # <p align="center">CurseForge Downloader 2023</p>
 
-### Version: 1.4
+### Version: 1.5
 Download Modpacks From CurseForge, BETA
 <br>
 $\color{red}\text{⟁}$ Script Can Stop Working In The Future Due To Loaders/Hosts Changing Stuff
