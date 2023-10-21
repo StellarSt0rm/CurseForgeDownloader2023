@@ -161,6 +161,7 @@ def downloadM2(pID, fID, Mversion, loader, listing): # Threaded Version!
 
 		print(f"{colors.green}DONE:{colors.reset} {colors.yellow}\"{Nname.replace('./mods/', '')}\" {colors.blue}({i2}/{listing}){colors.reset}")
 		i2 += 1 # i2 Is In The Thread Itself, So It Hopefully Comes Out ""Sorted""
+		if i2 == listing + 1: print(f"{colors.green}\nDownload Complete!{colors.reset}")
 	else:
 		# Handle Request Exceptions
 		print(f"{colors.red}ERROR:{colors.reset} {colors.blue}There Was An Error Getting The Mod! (HTTP Status Code: {colors.blue}{response.status_code}{colors.yellow}){colors.reset}")
@@ -192,7 +193,6 @@ def main(): # Main Script Function
 						if threading.active_count() < maxThreadN + 1: # Check That Active Thread Count Is Below maxThreadN
 							threading.Thread(target=lambda: downloadM2(entry["projectID"], entry["fileID"], Mversion, loader, len(Mdata["files"]))).start() # Start Thread
 							Trying = False # Set Trying To False, To Stop The While Loop
-			print(f"{colors.green}\nDownload Complete!{colors.reset}")
 if __name__ == "__main__":
 	maxThreadN = 0 # Def thread Num
 	i = 1 # For Resourcepack Enumeration, Until NAME Support Is Added
