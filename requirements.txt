@@ -2,6 +2,5 @@ requests
 zipfile
 json
 os
-toml
 threading
 sys
