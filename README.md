@@ -3,12 +3,11 @@
 ### Version: 1.4
 Download Modpacks From CurseForge, BETA
 <br>
+$\color{red}\text{⟁}$ Script Can Stop Working In The Future Due To Loaders/Hosts Changing Stuff
 <br>
-Script Can Stop Working In The Future Due To Loaders/Hosts Changing Stuff
 <br>
-Script May Have Errors In Getting Data, Please Check \"resourcepacks\" And Make Sure There Isn't Any False-Positives (Will Fix In The Future)
-
 Tested With "Colony A New Odyssey - STABLE-1.0.7", Out Of 176 Mods, All Were Handled Correctly 🥳🥳🥳
+<br>
 <br>
 <br>
 Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
