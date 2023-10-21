@@ -79,11 +79,11 @@ def getData(loader, Mversion, mode: int, Rnum: int = None):
 						manifestD[key.strip()] = value.strip()
 
 				# Set Vars
-				name = manifestD["Automatic-Module-Name"]
+				name = manifestD["Automatic-Module-Name"].split(".")[1]
 				try: version = manifestD["Implementation-Version"]
 				except: version = "UnknownVersion"
 
-				Nname = f"./mods/{name}-{version}-{Mversion}"
+				Nname = f"./mods/{name}-{version}-{Mversion}.jar"
 				if mode == 1: print(f"\033[1A├ {colors.blue}Getting Mod Data... {colors.yellow}[DONE] (LOW DATA AVAILABLE){colors.reset}")
 				elif mode == 2: print(f"{colors.yellow}\033[1mWARNING:{colors.reset} {colors.blue}Low Data Avalable On File, Assuming It's A Library{colors.reset}")
 			except: # Catch Shaders
