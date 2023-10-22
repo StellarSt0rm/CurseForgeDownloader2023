@@ -15,9 +15,10 @@ Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
 <br>
 
 ## How To Install
-1. Run `pip install -r requirements.txt` To Make Sure You Have All The Needed Libraries
-2. Put The Script In The Modpack Folder, And Run It From The Terminal:
-   <br>`py ./CSDownloader.py` (MAKE SURE YOU'RE IN THE SAME FOLDER AS THE SCRIPT)
+1. Download `CSDownloader.py` (And `requirements.txt`)From The Repo Tree (Will Be Put As Releases In The Future)
+2. Run `pip install -r requirements.txt` (While In The Same Folder As The File)
+3. Run `python CSDownloader.py ./<path-to-modpack>` And Wait!
+
 <br>
 
 ## Features
@@ -26,12 +27,18 @@ Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
       <br>(IMAGE HERE)
       <br>
       <br>
-   3. Threaded Mode (FAST - Bad For Slow Computers)
+   2. Threaded Mode (FAST - Bad For Slow Computers)
       <br>Goes BLAZINGLY FAST 🚀 ; Good For BIG Modpacks
       <br>$\color{red}\text{⟁}$ Fast Is Relative To How Big The Modpack Is, But It's Faster Than Detailed Mode
-      <br>Usage: `py ./CSDownloader.py -t <num / or "max">`
+      <br>Usage: `python CSDownloader.py -t <num / or "max">`
       <br>"max" Will Set The Max To '30', But You Can Specify A Larger Number (Not Recommended)
       <br>(IMAGE HERE)
+      <br>
+      <br>
+   3. No Color
+      <br>Removes All Color, Except Bold
+      <br>Usage: `python CSDownloader.py -n`
+   
 <br>
 
 ## TODO:

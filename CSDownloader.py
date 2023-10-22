@@ -11,34 +11,52 @@ class colors(): # Class For Storing Color Codes, For AESTHETIC Purpses
 	reset = "\033[0m"
 
 def setup(): # Setup For Execution, To Make Sure The Nessesary Folders/Files Are Present
-	if not os.path.exists("./mods"): # Checks For A "mods" Folder, To Store Downloaded Mods
-		os.mkdir("./mods")
+	settingsD = {}
+	currentARGV = 1
+	gotPath = False
+	for arg in argv[1:]:
+		match arg:
+			case "-t":
+				try: 
+					try: setting = int(argv[currentARGV+1])
+					except:
+						if argv[currentARGV+1] == "max": setting = 30
+						else: raise Exception
 
-	if not os.path.exists("./resourcepacks"): # Same As ^, But With Resourcepacks
-		os.mkdir("./resourcepacks")
+					if setting > 30: print(f"{colors.yellow}\033[1mWARNING:{colors.reset} {colors.blue}Using Values Higher Than 30 Is Not Recommended{colors.reset}")
+					settingsD["-t"] = setting
+					currentARGV += 1
+				except Exception as e: print(f"{colors.red}ERROR:{colors.reset} {colors.blue}You Must Give A MAX Thread Number, Or Use \"max\" To Use The Max (Hardcapped) Value{colors.reset} ;; {e}"); exit()
+			case "-n":
+				colors.green = "\033[1m"
+				colors.red = "\033[1m"
+				colors.blue = ""
+				colors.yellow = ""
+			case _:
+				if gotPath == False:
+					try:
+						if argv[currentARGV] != "": setting = argv[currentARGV]; settingsD["data"] = setting
+						else: raise Exception
+					except Exception as e: print(f"{colors.red}ERROR:{colors.reset} {colors.blue}You Must Specify ZIP File{colors.reset}"); exit()
+					gotPath = True
+		currentARGV += 1
+	
+	Zpath = os.path.abspath(settingsD["data"].replace(settingsD["data"].split("/")[-1], ""))
+	if not os.path.exists(f"{Zpath}/overrides"): # Chechs For Overrides Folder
+		os.mkdir(f"{Zpath}/overrides")
+	if not os.path.exists(f"{Zpath}/overrides/mods"): # Checks For A "mods" Folder, To Store Downloaded Mods
+		os.mkdir(f"{Zpath}/overrides/mods")
 
-	if not os.path.exists("./shaders"): # Same As ^, But With Shaders
-		os.mkdir("./shaders")
+	if not os.path.exists(f"{Zpath}/overrides/resourcepacks"): # Same As ^, But With Resourcepacks
+		os.mkdir(f"{Zpath}/overrides/resourcepacks")
 
-	if not os.path.exists("./manifest.json"): # Checks If The Modpack's Manifest Is In The Same Folder
-		print(f"{colors.red}ERROR:{colors.reset} {colors.blue}Manifest File Not Found, Make Sure To Put The Script In The Same Folder As The Manifest{colors.reset}"); exit()
+	if not os.path.exists(f"{Zpath}/overrides/shaders"): # Same As ^, But With Shaders
+		os.mkdir(f"{Zpath}/overrides/shaders")
+	
+	return settingsD
 
-	if len(argv) >= 2:
-		if len(argv) >= 3 and argv[1] == "-t":
-			global maxThreadN
-			try: inputS = int(argv[2])
-			except: inputS = argv[2]
-			if type(inputS) is str:
-				if inputS == "max": maxThreadN = 30
-				else: print(f"{colors.red}ERROR:{colors.reset} {colors.blue}You Must Give A MAX Thread Number, Or Use \"max\" To Use The Max (Hardcapped) Value{colors.reset}")
-			else:
-				if inputS > 30: print(f"{colors.yellow}\033[1mWARNING:{colors.reset} {colors.blue}Using Values Higher Than 30 Is Not Recommended{colors.reset}")
-				maxThreadN = inputS
-		else:
-			print(f"{colors.red}ERROR:{colors.reset} {colors.blue}You Must Give A MAX Thread Number, Or Use \"max\" To Use The Max (Hardcapped) Value{colors.reset}")
-
-def getType(mode: int, name: str):
-	newPath = "mods/"
+def getType(mode: int, name: str, path):
+	newPath = f"{path}/overrides/mods"
 	# This Part Checks If The File Is A ZIP;
 	# If It Is, It Checks If It's A shader;
 	# And Sets The Appropiate Path (shader/resourcepack)
@@ -47,15 +65,15 @@ def getType(mode: int, name: str):
 		with zipfile.ZipFile(f"./{name}", "r") as zipF:
 			for entry in zipF.infolist():
 				if "shader" in entry.filename or "shaders" in entry.filename:
-					newPath = "shaders/"
+					newPath = f"{path}/overrides/shaders"
 					break
 				else:
-					newPath = "resourcepacks/"
+					newPath = f"{path}/overrides/resourcepacks"
 	# Move File
 	if mode == 1: print(f"\033[1A├ {colors.blue}Getting Mod Type... {colors.green}[DONE]{colors.reset}")
-	os.rename(name, f"./{newPath}{name}")
+	os.rename(f"{path}/overrides/{name}", f"{newPath}/{name}")
 
-def downloadM(pID, fID, listing, mode):
+def downloadM(pID, fID, listing, mode, path):
 	global i
 	Trying2 = True
 
@@ -79,14 +97,14 @@ def downloadM(pID, fID, listing, mode):
 			print(f"└ {colors.blue}Writing Mod To File{colors.reset}")
 
 		Nname = response.url.split("/")[-1].replace("%2B", "+") # Get Name
-		with open(f"./{Nname}", "wb") as file:
+		with open(f"{path}/overrides/{Nname}", "wb") as file:
 			file.write(response.content)
 
 		if mode == 1:
 			print(f"\033[1A├ {colors.blue}Writing Mod To File... {colors.green}[DONE]{colors.reset}")
 			print(f"└ {colors.blue}Getting Mod Type...{colors.reset}")
 
-		getType(mode, Nname) # Get Mod Type/Sort In Folders
+		getType(mode, Nname, path) # Get Mod Type/Sort In Folders
 		
 		if mode == 1: print(f"└ {colors.blue}Downloaded: {colors.green}\"{Nname}\"{colors.reset}\n")
 		else: print(f"{colors.green}DONE:{colors.reset} {colors.blue}\"{Nname}\" {colors.yellow}({i}/{listing}){colors.reset}")
@@ -102,8 +120,17 @@ def downloadM(pID, fID, listing, mode):
 def main(): # Main Script Function
 	global maxThreadN # Max Thread Count
 
-	with open("manifest.json", "r") as Mfile: # Open Manifest Json
-			Mdata = json.load(Mfile) # Get Data
+	settings = setup() # Run Setup
+	try: maxThreadN = settings["-t"]
+	except: tmp = 1
+
+	Zpath = os.path.abspath(settings["data"].replace(settings["data"].split("/")[-1], ""))
+	Zpath2 = os.path.abspath(settings["data"])
+	print(Zpath)
+	print(Zpath2)
+
+	with zipfile.ZipFile(Zpath2, "r") as Mzip: # Open Manifest Json
+			Mdata = json.loads(Mzip.read("manifest.json").decode("utf-8"))
 
 			Mversion = Mdata["minecraft"]["version"] # Get Version
 			loader = Mdata["minecraft"]["modLoaders"][0]["id"].split("-")[0] # Get Loader
@@ -117,14 +144,14 @@ def main(): # Main Script Function
 			# If maxThreadN Is Something Other Than Zero, Threaded Mode Is Ran
 			for entry in Mdata["files"]:
 				if maxThreadN == 0: # Non Thread Ver (DEF)
-					downloadM(entry["projectID"], entry["fileID"], len(Mdata["files"]), 1)
+					downloadM(entry["projectID"], entry["fileID"], len(Mdata["files"], Zpath), 1)
 				else: # Threaded Version
 					Trying = True
 
 					# We Dont Wanna Loose A Mod, But Also Not Surpass The Limit, So, We Try Until Trying Is False
 					while Trying:
 						if threading.active_count() < maxThreadN + 1: 
-							threading.Thread(target=lambda: downloadM(entry["projectID"], entry["fileID"], len(Mdata["files"]), 2)).start() # Start Thread
+							threading.Thread(target=lambda: downloadM(entry["projectID"], entry["fileID"], len(Mdata["files"]), 2, Zpath)).start() # Start Thread
 							Trying = False
 				
 				if i == len(Mdata["files"]) + 1:
@@ -134,7 +161,6 @@ def main(): # Main Script Function
 if __name__ == "__main__":
 	maxThreadN = 0 # Def thread Num
 	i = 1 # For Listing
-	setup() # Run Setup
 	try:
 		main() # Start Script
 	except KeyboardInterrupt:
