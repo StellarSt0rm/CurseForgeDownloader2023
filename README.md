@@ -3,7 +3,7 @@
 ### Version: 1.6
 Download Modpacks From CurseForge, BETA
 <br>
-$\color{red}\text{⟁}$ Script Can Stop Working In The Future Due To Loaders/Hosts Changing Stuff
+$\color{red}\text{⟁}$ Script Can Stop Working In The Future Due To Hosts Changing Stuff
 <br>
 <br>
 Tested With "Colony A New Odyssey - STABLE-1.0.7", Out Of 176 Mods, All Were Handled Correctly 🥳🥳🥳
@@ -18,6 +18,7 @@ Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
 1. Download `CSDownloader.py` (And `requirements.txt`)From The Repo Tree (Will Be Put As Releases In The Future)
 2. Run `pip install -r requirements.txt` (While In The Same Folder As The File)
 3. Run `python CSDownloader.py ./<path-to-modpack>` And Wait!
+   <br>(The Script Will Put Everything In The "overrides" Folder Next To The ZIP File; Script Can Be Run From Anywhere Now)
 
 <br>
 
