@@ -24,12 +24,12 @@ Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
 <br>
 
 ## Features
-   1. Detailed Mode (SLOW - DEF)
+   1. Detailed Mode (SLOW - DEF):
       <br>Gives Detailed Output Of What The Script Is Doing
       <br>![DetailedMode](https://github.com/StellarSt0rm/CurseForgeDownloader2023/blob/b2ab628dab5f163cb7f609a015f3b2c408b4e312/README-RES/DetailedM.png)
       <br>
       <br>
-   2. Threaded Mode (FAST - Bad For Slow Computers)
+   2. Threaded Mode (FAST - Bad For Slow Computers):
       <br>Goes BLAZINGLY FAST 🚀 ; Good For BIG Modpacks
       <br>$\color{red}\text{⟁}$ Fast Is Relative To How Big The Modpack Is, But It's Faster Than Detailed Mode
       <br>Usage: `python CSDownloader.py -t <num / or "max">`
@@ -37,7 +37,7 @@ Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
       <br>![ThreadedMode](https://github.com/StellarSt0rm/CurseForgeDownloader2023/blob/b2ab628dab5f163cb7f609a015f3b2c408b4e312/README-RES/ThreadedM.png)
       <br>
       <br>
-   3. No Color
+   3. No Color:
       <br>Removes All Color, Except Bold
       <br>Usage: `python CSDownloader.py -n`
    
