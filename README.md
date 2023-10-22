@@ -15,7 +15,7 @@ Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
 <br>
 
 ## How To Install
-1. Download `CSDownloader.py` (And `requirements.txt`)From The Repo Tree (Will Be Put As Releases In The Future)
+1. Download `CSDownloader.py` (And `requirements.txt`) From The Repo Tree (Will Be Put As Releases In The Future)
 2. Run `pip install -r requirements.txt` (While In The Same Folder As The File)
 3. Run `python CSDownloader.py ./<path-to-modpack>` And Wait!
    <br>(The Script Will Put Everything In The "overrides" Folder Next To The ZIP File; Script Can Be Run From Anywhere Now)
