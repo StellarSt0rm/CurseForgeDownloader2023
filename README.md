@@ -42,11 +42,8 @@ Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
 <br>
 
 ## TODO:
-   1. Add Support To (Unzipped) Zip Files
-   2. Add `-u <url>` To Download Modpacks Directly (Without Needing The Zip Already Downloaded)
-   3. Prepare Full "overrides" Folder With Everything To Make Final Installation Easier
-   4. Change The Way Arguments Are Handled
-   5. Add `-n` Option To Disable Colors (Will Keep Bold)
+   1. Add `-u <url>` To Download Modpacks Directly (Without Needing The Zip Already Downloaded)
+   2. Prepare Full "overrides" Folder With Everything To Make Final Installation Easier (HALF DONE)
       
     ?. Add GUI "Mode" (Will Be Separate Script)
 
