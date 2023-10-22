@@ -1,6 +1,8 @@
 # <p align="center">CurseForge Downloader 2023</p>
 
 ### Version: 1.6
+#### Requires Python 3.x (Or Higher)
+<br>
 Download Modpacks From CurseForge, BETA
 <br>
 $\color{red}\text{⟁}$ Script Can Stop Working In The Future Due To Hosts Changing Stuff
@@ -13,7 +15,10 @@ Tested With "Colony A New Odyssey - STABLE-1.0.7", Out Of 176 Mods, All Were Han
 Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
 <br>
 <br>
-
+Linux Compatibility: ~100% (Was Made In Linux)
+<br>Windows Compatibility: Unknown
+<br>
+<br>
 ## How To Install
 1. Download `CSDownloader.py` (And `requirements.txt`) From The Repo Tree (Will Be Put As Releases In The Future)
 2. Run `pip install -r requirements.txt` (While In The Same Folder As The File)
