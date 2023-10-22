@@ -24,7 +24,7 @@ Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
 ## Features
    1. Detailed Mode (SLOW - DEF)
       <br>Gives Detailed Output Of What The Script Is Doing
-      <br>(IMAGE HERE)
+      <br>![DetailedMode](./README-RES/DetailedM.png)
       <br>
       <br>
    2. Threaded Mode (FAST - Bad For Slow Computers)
@@ -32,7 +32,7 @@ Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
       <br>$\color{red}\text{⟁}$ Fast Is Relative To How Big The Modpack Is, But It's Faster Than Detailed Mode
       <br>Usage: `python CSDownloader.py -t <num / or "max">`
       <br>"max" Will Set The Max To '30', But You Can Specify A Larger Number (Not Recommended)
-      <br>(IMAGE HERE)
+      <br>![ThreadedMode](./README-RES/ThreadedM.png)
       <br>
       <br>
    3. No Color

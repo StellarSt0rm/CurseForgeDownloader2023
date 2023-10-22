@@ -126,8 +126,6 @@ def main(): # Main Script Function
 
 	Zpath = os.path.abspath(settings["data"].replace(settings["data"].split("/")[-1], ""))
 	Zpath2 = os.path.abspath(settings["data"])
-	print(Zpath)
-	print(Zpath2)
 
 	with zipfile.ZipFile(Zpath2, "r") as Mzip: # Open Manifest Json
 			Mdata = json.loads(Mzip.read("manifest.json").decode("utf-8"))
@@ -138,13 +136,14 @@ def main(): # Main Script Function
 			# Logging
 			print(f"{colors.blue}Script Version: {colors.yellow}{Sversion}{colors.reset}")
 			print(f"{colors.blue}Found Mod Loader: {colors.yellow}{loader.capitalize()}{colors.reset}")
-			print(f"{colors.blue}Found MC Version: {colors.yellow}{Mversion}{colors.reset}\n")
+			print(f"{colors.blue}Found MC Version: {colors.yellow}{Mversion}{colors.reset}")
+			print(f"{colors.blue}Max Threads: {colors.yellow}{maxThreadN}{colors.reset}\n")
 
 			# Iterates Through Each Mod
 			# If maxThreadN Is Something Other Than Zero, Threaded Mode Is Ran
 			for entry in Mdata["files"]:
 				if maxThreadN == 0: # Non Thread Ver (DEF)
-					downloadM(entry["projectID"], entry["fileID"], len(Mdata["files"], Zpath), 1)
+					downloadM(entry["projectID"], entry["fileID"], len(Mdata["files"]), 1, Zpath)
 				else: # Threaded Version
 					Trying = True
 
