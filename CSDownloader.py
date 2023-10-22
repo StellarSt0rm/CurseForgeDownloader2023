@@ -136,9 +136,8 @@ def main(): # Main Script Function
 			# Logging
 			print(f"{colors.blue}Script Version: {colors.yellow}{Sversion}{colors.reset}")
 			print(f"{colors.blue}Found Mod Loader: {colors.yellow}{loader.capitalize()}{colors.reset}")
-			print(f"{colors.blue}Found MC Version: {colors.yellow}{Mversion}{colors.reset}")
-			print(f"{colors.blue}Max Threads: {colors.yellow}{maxThreadN}{colors.reset}\n")
-
+			if maxThreadN != 0: print(f"{colors.blue}Found MC Version: {colors.yellow}{Mversion}{colors.reset}");  print(f"{colors.blue}Max Threads: {colors.yellow}{maxThreadN}{colors.reset}\n")
+			else: print(f"{colors.blue}Found MC Version: {colors.yellow}{Mversion}{colors.reset}\n")
 			# Iterates Through Each Mod
 			# If maxThreadN Is Something Other Than Zero, Threaded Mode Is Ran
 			for entry in Mdata["files"]:
