@@ -62,7 +62,7 @@ def getType(mode: int, name: str, path):
 	# And Sets The Appropiate Path (shader/resourcepack)
 
 	if ".zip" in name:
-		with zipfile.ZipFile(f"{path}/overrides//{name}", "r") as zipF:
+		with zipfile.ZipFile(f"{path}/overrides/{name}", "r") as zipF:
 			for entry in zipF.infolist():
 				if "shader" in entry.filename or "shaders" in entry.filename:
 					newPath = f"{path}/overrides/shaders"
