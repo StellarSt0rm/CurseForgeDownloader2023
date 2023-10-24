@@ -1,4 +1,4 @@
-name: Build and Release
+name: Build and Release GUI
 
 on:
   workflow_dispatch:
@@ -27,7 +27,12 @@ jobs:
         run: pyinstaller --onefile GUI-VER/CSDownloader-GUI_BETA.py
 
       - name: Archive Artifacts
-        run: zip -r GUI-Mode_${{ runner.os }}.zip dist
+        run: |
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
+            Compress-Archive -Path dist -DestinationPath GUI-Mode_${{ runner.os }}.zip
+          else
+            zip -r GUI-Mode_${{ runner.os }}.zip dist
+          fi
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
