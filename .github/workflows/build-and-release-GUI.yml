@@ -1,9 +1,7 @@
 name: Build and Release
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   build:
@@ -26,7 +24,7 @@ jobs:
         run: pip install pyinstaller
 
       - name: Build for ${{ runner.os }}
-        run: pyinstaller --onefile GUI-VER/CSDownloader-GUI*.py
+        run: pyinstaller --onefile GUI-VER/CSDownloader-GUI_BETA.py
 
       - name: Archive Artifacts
         run: zip -r GUI-Mode_${{ runner.os }}.zip dist
