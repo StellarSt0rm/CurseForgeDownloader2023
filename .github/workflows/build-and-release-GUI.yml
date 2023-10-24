@@ -43,7 +43,7 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v2
         with:
-          name: GUI-Mode-*-artifact
+          name: GUI-Mode-Linux-artifact
 
       - name: Create Draft Release
         id: create_release
