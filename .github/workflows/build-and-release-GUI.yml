@@ -28,7 +28,7 @@ jobs:
 
       - name: Archive Artifacts
         run: |
-          if [[ "${{ runner.os }}" == "Windows" ]]; then
+          if [ "${{ runner.os }}" == "Windows" ]; then
             Compress-Archive -Path dist -DestinationPath GUI-Mode_${{ runner.os }}.zip
           else
             zip -r GUI-Mode_${{ runner.os }}.zip dist
