@@ -25,14 +25,9 @@ jobs:
 
       - name: Build for ${{ runner.os }}
         run: pyinstaller --onefile GUI-VER/CSDownloader-GUI_BETA.py
-
-      - name: Archive Artifacts (WINDOWS)
-        if: "contains(${{ runner.os }}, 'Windows')"
-        run: Compress-Archive -Path dist -DestinationPath GUI-Mode_${{ runner.os }}.zip
         
-      - name: Archive Artifacts (LINUX)
-        if: "contains(${{ runner.os }}, 'Linux')"
-        run: zip -r GUI-Mode_${{ runner.os }}.zip dist
+      - name: Archive Artifacts
+        run: 7z a -r GUI-Mode_${{ runner.os }}.zip dist
         
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
