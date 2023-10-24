@@ -51,7 +51,6 @@ Linux Compatibility: ~100% (Was Made In Linux)
 
 ## TODO:
    1. Add `-u <url>` To Download Modpacks Directly (Without Needing The Zip Already Downloaded)
-   2. Prepare Full "overrides" Folder With Everything To Make Final Installation Easier (HALF DONE)
       
     ?. Polish GUI "Mode"
 
