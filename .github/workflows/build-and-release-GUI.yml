@@ -1,0 +1,59 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set Up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x  # Choose your desired Python version
+
+      - name: Install Dependencies
+        run: pip install pyinstaller
+
+      - name: Build for ${{ runner.os }}
+        run: pyinstaller --onefile GUI-VER/CSDownloader-GUI*.py
+
+      - name: Archive Artifacts
+        run: zip -r GUI-Mode_${{ runner.os }}.zip dist
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: GUI-Mode-${{ runner.os }}-artifact
+          path: GUI-Mode_${{ runner.os }}.zip
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: GUI-Mode-ubuntu-latest-artifact
+
+      - name: Create Draft Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: GUI-Mode_*.zip
+          token: ${{ secrets.GITHUB_TOKEN }}
+          draft: true
+
+      - name: Release URL
+        run: echo "Release URL - ${{ steps.create_release.outputs.upload_url }}"
