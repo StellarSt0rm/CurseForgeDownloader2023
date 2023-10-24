@@ -6,6 +6,17 @@ $\color{red}\text{⟁}$ UNFINISHED!
 <br>
 <br>
 <br>
+IMAGES:
+<br>
+(IMAGE HERE)
+<br>
+<br>
+(IMAGE HERE)
+<br>
+<br>
+(IMAGE HERE)
+<br>
+<br>
 
 GUI Version Supports (At The Moment):
 1. ZIP Files
