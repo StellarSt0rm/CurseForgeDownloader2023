@@ -79,7 +79,7 @@ jobs:
           7z a CSDownloader-GUI_PY.zip buildInstructions.txt
           cd GUI-VER
           mv CSDownloader-GUI*.py CSDownloader-GUI.py
-          7z a ../CSDownloader-GUI_PY.zip CSDownloader-GUI_BETA.py requirements.txt
+          7z a ../CSDownloader-GUI_PY.zip CSDownloader-GUI.py requirements.txt
           cd ..
           mv CSDownloader.py CSDownloader-TUI.py
           7z a CSDownloader-TUI_PY.zip CSDownloader-TUI.py requirements.txt buildInstructions.txt
