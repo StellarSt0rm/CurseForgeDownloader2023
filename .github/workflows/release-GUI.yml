@@ -47,17 +47,11 @@ jobs:
         run: ls -a && echo -e "\n\n" && pwd
         
       - name: Create Draft Release
-        id: create_release
-        uses: softprops/action-gh-release@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          draft: true
-          tag_name: release-x.x
-          fail_on_unmatched_files: true
-          run: echo -e "\n\n" && pwd && echo -e "\n\n"
-          files: |
-            ./GUI-Mode_Linux.zip
-            ./GUI-Mode_Windows.zip
+        run: |
+          gh release create release-x.x ./GUI-Mode_Linux.zip ./GUI-Mode_Windows.zip --title "Release x.x" --notes "Release notes for x.x" --draft
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
       - name: Release URL
         run: echo "Release URL - ${{ steps.create_release.outputs.upload_url }}"
