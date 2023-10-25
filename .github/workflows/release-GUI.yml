@@ -1,4 +1,4 @@
-name: Build and Release GUI
+name: Build Snd Release GUI
 
 on:
   workflow_dispatch:
@@ -32,20 +32,19 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: GUI-Mode_${{ runner.os }}.zip
+          name: ${{ runner.os }}-artifact
           path: GUI-Mode_${{ runner.os }}.zip
 
   release:
     needs: build
     runs-on: ubuntu-latest
-    permissions: write-all
 
     steps:
       - name: Download Artifacts
         uses: actions/download-artifact@v2
-        
+
       - name: Debug
-        run: ls -a && echo -e "\n\n" && pwd && ls ./GUI-Mode_Linux.zip
+        run: ls -a && ls -a ./Linux-artifact && ls -a ./Windows-artifact
         
       - name: Create Draft Release
         id: createRelease
@@ -58,5 +57,5 @@ jobs:
           tag_name: release-v
           fail_on_unmatched_files: false
           files: |
-            ./GUI-Mode_Linux.zip
-            ./GUI-Mode_Windows.zip
+            ./Linux-artifact/GUI-Mode_Linux.zip
+            ./Windows-artifact/GUI-Mode_Windows.zip
