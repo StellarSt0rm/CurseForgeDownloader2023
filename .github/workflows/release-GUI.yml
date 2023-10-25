@@ -96,7 +96,7 @@ jobs:
         uses: actions/download-artifact@v2
 
       - name: Debug
-        run: ls
+        run: ls -R
         
       - name: Create Draft Release
         id: createRelease
