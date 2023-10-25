@@ -106,7 +106,7 @@ jobs:
           draft: true
           name: Release v
           tag_name: release-v
-          fail_on_unmatched_files: false
+          fail_on_unmatched_files: true
           files: |
             ./GUI-Linux-artifact/CSDownloader-GUI_Linux
             ./GUI-Windows-artifact/CSDownloader-GUI_Windows
