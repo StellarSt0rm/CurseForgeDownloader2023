@@ -73,7 +73,7 @@ jobs:
 
       - name: Add Build Instructions
         run: | 
-          echo -e "Install 'pyinstaller': pip install pyinstaller\nInstall Dependecies: pip install -r requirements.txt\nBuild File: ~/.local/bin/pyinstaller ./CSDownloader-<GUI/TUI>.py" > buildInstructions.txt
+          echo -e "Install 'pyinstaller': pip install pyinstaller\nInstall Dependencies: pip install -r requirements.txt\nBuild File: ~/.local/bin/pyinstaller ./CSDownloader-<GUI/TUI>.py" > buildInstructions.txt
       - name: Archive PY (GUI) & PY (TUI)
         run: |
           7z a CSDownloader-GUI_PY.zip buildInstructions.txt
