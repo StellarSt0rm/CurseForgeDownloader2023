@@ -54,6 +54,7 @@ jobs:
           draft: true
           tag_name: release-x.x
           fail_on_unmatched_files: true
+          run: echo -e "\n\n" && pwd && echo -e "\n\n"
           files: |
             ./GUI-Mode_Linux.zip
             ./GUI-Mode_Windows.zip
