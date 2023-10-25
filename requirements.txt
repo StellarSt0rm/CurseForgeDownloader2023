@@ -1,5 +1,4 @@
 requests
-zipfile
 json
 os
 threading
