@@ -82,7 +82,7 @@ jobs:
           7z a ../CSDownloader-GUI_PY.zip CSDownloader-GUI_BETA.py requirements.txt
           cd ..
           mv CSDownloader.py CSDownloader-TUI.py
-          7z a CSDownloader-TUI_PY.zip CSDownloader.py requirements.txt buildInstructions.txt
+          7z a CSDownloader-TUI_PY.zip CSDownloader-TUI.py requirements.txt buildInstructions.txt
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
