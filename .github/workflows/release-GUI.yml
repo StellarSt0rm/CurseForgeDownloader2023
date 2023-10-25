@@ -45,7 +45,7 @@ jobs:
         uses: actions/download-artifact@v2
         
       - name: Debug
-        run: ls -a && echo -e "\n\n" && pwd && cat ./GUI-Mode_Linux.zip
+        run: ls -a && echo -e "\n\n" && pwd && ls ./GUI-Mode_Linux.zip
         
       - name: Create Draft Release
         id: createRelease
