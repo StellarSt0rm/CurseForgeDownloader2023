@@ -6,7 +6,7 @@ from time import sleep
 import tkinter as tk
 
 settings = {"-t": 0, "data": None, "data2": None, "-u": None, "name": None, "loader": None, "version": None, "-t2": None, "last": None}
-try: DownloadsDIR = checkOUT(["xdg-user-dir", "DOWNLOAD"]).decode("utf-8").split("/")[-1].strip()
+try: DownloadsDIR = checkOUT(["xdg-user-dir", "DOWNLOAD"]).decode("utf-8").strip()
 except: DownloadsDIR = None
 Sversion = "1.3 - GUI (BETA)"
 
