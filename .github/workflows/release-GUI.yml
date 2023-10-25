@@ -58,7 +58,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: TUI-${{ runner.os }}-artifact
-          path: dist/CSDownloader-TUI_${{ runner.os }}
+          path: dist/CSDownloader-TUI_${{ runner.os }}*
   
   Extras:
     runs-on: ${{ matrix.os }}
