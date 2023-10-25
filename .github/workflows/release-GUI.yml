@@ -47,6 +47,7 @@ jobs:
         run: ls -a && echo -e "\n\n" && pwd
         
       - name: Create Draft Release
+        id: createRelease
         run: |
           gh release create release-x.x ./GUI-Mode_Linux.zip ./GUI-Mode_Windows.zip --title "Release x.x" --notes "Release notes for x.x" --draft
         env:
@@ -54,4 +55,4 @@ jobs:
 
 
       - name: Release URL
-        run: echo "Release URL - ${{ steps.create_release.outputs.upload_url }}"
+        run: echo "Release URL - ${{ steps.createRelease.outputs.upload_url }}"
