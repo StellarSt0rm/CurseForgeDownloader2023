@@ -42,10 +42,6 @@ jobs:
     steps:
       - name: Download Artifacts
         uses: actions/download-artifact@v2
-        with:
-          files: |
-            GUI-Mode_Linux.zip
-            GUI-Mode_Windows.zip
 
       - name: Create Draft Release
         id: create_release
