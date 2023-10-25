@@ -27,16 +27,39 @@ jobs:
         run: pyinstaller --onefile GUI-VER/CSDownloader-GUI_BETA.py
         
       - name: Archive Artifacts
-        run: 7z a -r GUI-Mode_${{ runner.os }}.zip dist
+        run: 7z a -r CSDownloader-GUI-Mode_${{ runner.os }}.zip dist
         
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: ${{ runner.os }}-artifact
-          path: GUI-Mode_${{ runner.os }}.zip
-
-  release:
+          path: CSDownloader-GUI-Mode_${{ runner.os }}.zip
+  
+  extras:
     needs: build
+    runs-on: ${{ matrix.os }}
+    
+    strategy: 
+      matrix:
+        os: [ ubuntu-latest ]
+
+    steps: 
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        
+      - name: Archive PY (GUI) & PY (TUI)
+        run: 7z a -r CSDownloader-GUI_PY.zip GUI-VER/CSDownloader-GUI_BETA.py GUI-VER/requirements.txt && 7z a -r CSDownloader.zip CSDownloader.py requirements.txt
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: PY-artifacts
+          path: |
+            CSDownloader-GUI_PY.zip
+            CSDownloader.zip
+          
+  release:
+    needs: extras
     runs-on: ubuntu-latest
     permissions: write-all
 
@@ -57,5 +80,5 @@ jobs:
           tag_name: release-v
           fail_on_unmatched_files: false
           files: |
-            ./Linux-artifact/GUI-Mode_Linux.zip
-            ./Windows-artifact/GUI-Mode_Windows.zip
+            ./Linux-artifact/CSDownloader-GUI-Mode_Linux.zip
+            ./Windows-artifact/CSDownloader-GUI-Mode_Windows.zip
