@@ -47,12 +47,13 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          files: |
-            GUI-Mode_Linux.zip
-            GUI-Mode_Windows.zip
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
-          tag: release
+          tag_name: release-x.x
+          fail-on-unmatched-files: true
+          files: |
+            /home/runner/work/CurseForgeDownloader2023/CurseForgeDownloader2023/GUI-Mode_Linux.zip
+            /home/runner/work/CurseForgeDownloader2023/CurseForgeDownloader2023/GUI-Mode_Windows.zip
 
       - name: Release URL
         run: echo "Release URL - ${{ steps.create_release.outputs.upload_url }}"
