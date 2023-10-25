@@ -29,7 +29,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ runner.os }}-artifact
+          name: GUI-${{ runner.os }}-artifact
           path: dist/CSDownloader-GUI_${{ runner.os }}
 
   Build-TUI:
@@ -57,7 +57,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ runner.os }}-artifact
+          name: TUI-${{ runner.os }}-artifact
           path: dist/CSDownloader-TUI_${{ runner.os }}
   
   Extras:
@@ -96,7 +96,7 @@ jobs:
         uses: actions/download-artifact@v2
 
       - name: Debug
-        run: ls -a && ls -a ./Linux-artifact && ls -a ./Windows-artifact
+        run: ls -a && ls -a
         
       - name: Create Draft Release
         id: createRelease
@@ -108,5 +108,5 @@ jobs:
           tag_name: release-v
           fail_on_unmatched_files: false
           files: |
-            ./Linux-artifact/CSDownloader-GUI-Mode_Linux.zip
-            ./Windows-artifact/CSDownloader-GUI-Mode_Windows.zip
+            ./GUI-Linux-artifact/CSDownloader-GUI_Linux
+            ./GUI-Windows-artifact/CSDownloader-GUI_Windows
