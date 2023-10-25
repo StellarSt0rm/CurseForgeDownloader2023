@@ -1,8 +1,1 @@
-json
-os
 requests
-threading
-subprocess
-tkinter
-math
-time
