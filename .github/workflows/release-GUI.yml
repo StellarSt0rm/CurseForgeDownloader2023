@@ -52,7 +52,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          working-directory: /home/runner/work/CurseForgeDownloader2023/CurseForgeDownloader2023
           draft: true
           name: Release v
           tag_name: release-v
