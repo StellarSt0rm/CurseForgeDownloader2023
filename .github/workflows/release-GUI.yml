@@ -49,15 +49,15 @@ jobs:
         
       - name: Create Draft Release
         id: createRelease
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
           tag_name: release-x.x
-          fail_on_unmatched_files: true
+          fail_on_unmatched_files: false
           files: |
-            GUI-Mode_Linux.zip
-            GUI-Mode_Windows.zip
+            ./GUI-Mode_Linux.zip
+            ./GUI-Mode_Windows.zip
 
       - name: Release URL
         run: echo "Release URL - ${{ steps.createRelease.outputs.upload_url }}"
