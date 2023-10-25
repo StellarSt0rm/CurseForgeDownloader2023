@@ -70,12 +70,10 @@ jobs:
     steps: 
       - name: Checkout Code
         uses: actions/checkout@v2
-
-      - name: Add Build Instructions
-        run: | 
-          echo -e "Install 'pyinstaller': pip install pyinstaller\nInstall Dependencies: pip install -r requirements.txt\nBuild File: ~/.local/bin/pyinstaller ./CSDownloader-<GUI/TUI>.py" > buildInstructions.txt
+        
       - name: Archive PY (GUI) & PY (TUI)
         run: |
+          echo -e "Install 'pyinstaller': pip install pyinstaller\nInstall Dependencies: pip install -r requirements.txt\nBuild File: ~/.local/bin/pyinstaller ./CSDownloader-<GUI/TUI>.py" > buildInstructions.txt
           7z a CSDownloader-GUI_PY.zip buildInstructions.txt
           cd GUI-VER
           mv CSDownloader-GUI*.py CSDownloader-GUI.py
