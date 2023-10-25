@@ -45,7 +45,7 @@ jobs:
         uses: actions/download-artifact@v2
         
       - name: Debug
-        run: ls -a && echo -e "\n\n" && pwd
+        run: ls -a && echo -e "\n\n" && pwd && cat ./GUI-Mode_Linux.zip
         
       - name: Create Draft Release
         id: createRelease
@@ -53,11 +53,9 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
-          tag_name: release-x.x
+          name: Release v
+          tag_name: release-v
           fail_on_unmatched_files: false
           files: |
             ./GUI-Mode_Linux.zip
             ./GUI-Mode_Windows.zip
-
-      - name: Release URL
-        run: echo "Release URL - ${{ steps.createRelease.outputs.upload_url }}"
