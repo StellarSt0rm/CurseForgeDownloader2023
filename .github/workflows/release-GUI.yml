@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ runner.os }}-artifact
-          path: CSDownloader-GUI_${{ runner.os }}
+          path: dist/CSDownloader-GUI_${{ runner.os }}
 
   Build-TUI:
     runs-on: ${{ matrix.os }}
@@ -58,7 +58,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ runner.os }}-artifact
-          path: CSDownloader-TUI_${{ runner.os }}
+          path: dist/CSDownloader-TUI_${{ runner.os }}
   
   Extras:
     runs-on: ${{ matrix.os }}
