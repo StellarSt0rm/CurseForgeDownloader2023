@@ -36,7 +36,6 @@ jobs:
           path: CSDownloader-GUI-Mode_${{ runner.os }}.zip
   
   extras:
-    needs: build
     runs-on: ${{ matrix.os }}
     
     strategy: 
@@ -59,7 +58,10 @@ jobs:
             CSDownloader.zip
           
   release:
-    needs: extras
+    needs:
+     - extras
+     - build
+     
     runs-on: ubuntu-latest
     permissions: write-all
 
