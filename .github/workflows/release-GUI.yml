@@ -44,7 +44,7 @@ jobs:
         uses: actions/download-artifact@v2
         
       - name: Debug
-        run: echo $(ls -a) && echo -e "\n\n" && ls -a
+        run: ls -a ../
         
       - name: Create Draft Release
         id: create_release
@@ -55,8 +55,8 @@ jobs:
           tag_name: release-x.x
           fail_on_unmatched_files: true
           files: |
-            /home/runner/work/CurseForgeDownloader2023/CurseForgeDownloader2023/GUI-Mode_Linux.zip
-            /home/runner/work/CurseForgeDownloader2023/CurseForgeDownloader2023/GUI-Mode_Windows.zip
+            ./GUI-Mode_Linux.zip
+            ./GUI-Mode_Windows.zip
 
       - name: Release URL
         run: echo "Release URL - ${{ steps.create_release.outputs.upload_url }}"
