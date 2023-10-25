@@ -52,8 +52,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            GUI-Mode_Linux.zip
-            GUI-Mode_Windows.zip
+            GUI-Mode-Linux-artifact
+            GUI-Mode-Windows-artifact
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
 
