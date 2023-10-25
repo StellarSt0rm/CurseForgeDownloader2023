@@ -25,12 +25,12 @@ jobs:
 
       - name: Build for ${{ runner.os }}
         run: pyinstaller --onefile GUI-VER/CSDownloader-GUI_BETA.py -n CSDownloader-GUI_${{ runner.os }}
-        
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: GUI-${{ runner.os }}-artifact
-          path: dist/CSDownloader-GUI_${{ runner.os }}
+          path: dist/CSDownloader-GUI_${{ runner.os }}*
 
   Build-TUI:
     runs-on: ${{ matrix.os }}
