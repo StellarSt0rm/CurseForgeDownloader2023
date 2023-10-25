@@ -43,7 +43,7 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v2
         with:
-          files: |
+          name: |
             GUI-Mode-Linux-artifact
             GUI-Mode-Windows-artifact
 
@@ -51,7 +51,9 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          files: GUI-Mode_*.zip
+          files: |
+            GUI-Mode_Linux.zip
+            GUI-Mode_Windows.zip
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
 
