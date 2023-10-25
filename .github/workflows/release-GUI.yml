@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  Build-GUI:
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -24,18 +24,43 @@ jobs:
         run: pip install pyinstaller
 
       - name: Build for ${{ runner.os }}
-        run: pyinstaller --onefile GUI-VER/CSDownloader-GUI_BETA.py
-        
-      - name: Archive Artifacts
-        run: 7z a -r CSDownloader-GUI-Mode_${{ runner.os }}.zip dist
+        run: pyinstaller --onefile GUI-VER/CSDownloader-GUI_BETA.py -n CSDownloader-GUI_${{ runner.os }}
         
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: ${{ runner.os }}-artifact
-          path: CSDownloader-GUI-Mode_${{ runner.os }}.zip
+          path: CSDownloader-GUI_${{ runner.os }}
+
+  Build-TUI:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set Up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x  # Choose your desired Python version
+
+      - name: Install Dependencies
+        run: pip install pyinstaller
+
+      - name: Build for ${{ runner.os }}
+        run: pyinstaller --onefile CSDownloader.py -n CSDownloader-TUI_${{ runner.os }}
+        
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ runner.os }}-artifact
+          path: CSDownloader-TUI_${{ runner.os }}
   
-  extras:
+  Extras:
     runs-on: ${{ matrix.os }}
     
     strategy: 
@@ -47,7 +72,7 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Archive PY (GUI) & PY (TUI)
-        run: 7z a -r CSDownloader-GUI_PY.zip GUI-VER/CSDownloader-GUI_BETA.py GUI-VER/requirements.txt && 7z a -r CSDownloader.zip CSDownloader.py requirements.txt
+        run: 7z a -r CSDownloader-GUI_PY.zip GUI-VER/CSDownloader-GUI_BETA.py GUI-VER/requirements.txt && 7z a -r CSDownloader-TUI_PY.zip CSDownloader.py requirements.txt
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
@@ -55,12 +80,13 @@ jobs:
           name: PY-artifacts
           path: |
             CSDownloader-GUI_PY.zip
-            CSDownloader.zip
+            CSDownloader-TUI_PY.zip
           
-  release:
+  Release:
     needs:
-     - extras
-     - build
+     - Build-GUI
+     - Build-TUI
+     - Extras
      
     runs-on: ubuntu-latest
     permissions: write-all
