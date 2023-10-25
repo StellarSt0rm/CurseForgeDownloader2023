@@ -1,4 +1,4 @@
-name: Build And Release GUI
+name: Build And Release
 
 on:
   workflow_dispatch:
@@ -109,8 +109,8 @@ jobs:
           fail_on_unmatched_files: true
           files: |
             ./GUI-Linux-artifact/CSDownloader-GUI_Linux
-            ./GUI-Windows-artifact/CSDownloader-GUI_Windows
+            ./GUI-Windows-artifact/CSDownloader-GUI_Windows.exe
             ./PY-artifacts/CSDownloader-GUI_PY.zip
             ./TUI-Linux-artifact/CSDownloader-TUI_Linux
-            ./TUI-Windows-artifact/CSDownloader-TUI_Windows
+            ./TUI-Windows-artifact/CSDownloader-TUI_Windows.exe
             ./PY-artifacts/CSDownloader-TUI_PY.zip
