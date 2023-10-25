@@ -1,4 +1,4 @@
-name: Build Snd Release GUI
+name: Build And Release GUI
 
 on:
   workflow_dispatch:
@@ -38,6 +38,7 @@ jobs:
   release:
     needs: build
     runs-on: ubuntu-latest
+    permissions: write-all
 
     steps:
       - name: Download Artifacts
