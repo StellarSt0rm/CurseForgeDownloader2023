@@ -12,9 +12,6 @@ Tested With "Colony A New Odyssey - STABLE-1.0.7", Out Of 176 Mods, All Were Han
 <br>
 <br>
 
-Code Is Fully $\color{blue}\text{COMMENTED}$ For Your Convenience 🚀
-<br>
-<br>
 Linux Compatibility: ~100% (Was Made In Linux)
 <br>Windows Compatibility: Unknown
 <br>
