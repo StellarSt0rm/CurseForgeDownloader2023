@@ -108,7 +108,7 @@ def downloadM(pID, fID, listing, mode, path):
 		
 		if mode == 1: print(f"└ {colors.blue}Downloaded: {colors.green}\"{Nname}\"{colors.reset}\n")
 		else: print(f"{colors.green}DONE:{colors.reset} {colors.blue}\"{Nname}\" {colors.yellow}({i}/{listing}){colors.reset}")
-		i += 1 # i Is In The Thread Itself, So It Comes Out ""Sorted""
+		i += 1
 	else:
 		# Handle Request Exceptions
 		if mode == 1:
@@ -117,20 +117,20 @@ def downloadM(pID, fID, listing, mode, path):
 		else: print(f"{colors.red}ERROR:{colors.reset} {colors.blue}There Was An Error Getting The Mod! (HTTP Status Code: {colors.blue}{response.status_code}{colors.yellow}){colors.reset}")
 
 
-def main(): # Main Script Function
+def main():
 	global maxThreadN # Max Thread Count
 
-	settings = setup() # Run Setup
+	settings = setup()
 	try: maxThreadN = settings["-t"]
 	except: tmp = 1
 
 	Zpath = os.path.abspath(settings["data"].replace(settings["data"].split("/")[-1], ""))
 	Zpath2 = os.path.abspath(settings["data"])
 
-	with zipfile.ZipFile(Zpath2, "r") as Mzip: # Open Manifest Json
+	with zipfile.ZipFile(Zpath2, "r") as Mzip:
 			Mdata = json.loads(Mzip.read("manifest.json").decode("utf-8"))
 
-			Mversion = Mdata["minecraft"]["version"] # Get Version
+			Mversion = Mdata["minecraft"]["version"] # Get MC Version
 			loader = Mdata["minecraft"]["modLoaders"][0]["id"].split("-")[0] # Get Loader
 
 			# Logging
@@ -155,12 +155,11 @@ def main(): # Main Script Function
 				if i == len(Mdata["files"]) + 1:
 					print(f"{colors.green}\nDownload Complete!{colors.reset}")
 
-# Executes Script If Run Standalone
 if __name__ == "__main__":
-	maxThreadN = 0 # Def thread Num
-	i = 1 # For Listing
+	maxThreadN = 0
+	i = 1
 	try:
-		main() # Start Script
+		main()
 	except KeyboardInterrupt:
 		print(f"{colors.blue}\033[2K\n\rAborting...{colors.reset}"); exit()
 	except Exception as e:
