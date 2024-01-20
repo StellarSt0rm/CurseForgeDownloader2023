@@ -304,7 +304,7 @@ class downloader():
 			
 			progressLabel.config(text=f"Downloading... {floor((i/listing) * 100)}%")
 			print(f"{downloader.colors.green}DONE:{downloader.colors.reset} {downloader.colors.blue}\"{Nname}\" {downloader.colors.yellow}({i}/{listing}){downloader.colors.reset}")
-			i += 1 # i Is In The Thread Itself, So It Comes Out ""Sorted""
+			i += 1
 			if i == listing + 1:
 				print(f"{downloader.colors.green}\nDownload Complete!{downloader.colors.reset}")
 				progressLabel.config(text="Download Complete!")
@@ -329,7 +329,7 @@ class downloader():
 		Zpath = os.path.abspath(settings["data"].replace(settings["data"].split("/")[-1], ""))
 		Zpath2 = os.path.abspath(settings["data"])
 
-		with zipfile.ZipFile(Zpath2, "r") as Mzip: # Open Manifest Json
+		with zipfile.ZipFile(Zpath2, "r") as Mzip:
 			Mdata = json.loads(Mzip.read("manifest.json").decode("utf-8"))
 			for entry in Mdata["files"]:
 				if maxThreadN == 0: # Non Thread Ver (DEF)
